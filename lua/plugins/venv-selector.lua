@@ -1,3 +1,18 @@
+local sysname = vim.loop.os_uname().sysname
+local anaconda_base_path = {
+  Linux = {
+    anaconda_base = {
+      command = "$FD '/python$' ~/anaconda3/bin/ --full-path --color never",
+      type = "anaconda",
+    },
+
+    anaconda_envs = {
+      command = "$FD 'bin/python$' ~/anaconda3/envs --full-path --color never",
+      type = "anaconda",
+    },
+  },
+}
+
 return {
   "linux-cultist/venv-selector.nvim",
   branch = "regexp", -- Use this branch for the new version
@@ -12,6 +27,8 @@ return {
       options = {
         notify_user_on_venv_activation = true,
       },
+
+      search = anaconda_base_path[sysname] or {},
     },
   },
   --  Call config for python files and load the cached venv automatically
