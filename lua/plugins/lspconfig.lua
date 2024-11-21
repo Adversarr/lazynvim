@@ -1,12 +1,3 @@
-local default_capabilities = {
-  textDocument = {
-    completion = {
-      editsNearCursor = true,
-    },
-  },
-  offsetEncoding = "utf-8",
-}
-
 local clangd = {
   keys = {
     { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
@@ -45,7 +36,16 @@ local clangd = {
 
 local cmake = {}
 
-local pyright = {}
+local basedpyright = {
+  settings = {
+    basedpyright = {
+      analysis = {
+        typeCheckingMode = "standard",
+        diagnosticMode = "openFilesOnly",
+      },
+    },
+  },
+}
 
 return {
   {
@@ -54,7 +54,7 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
-        basedpyright = pyright,
+        basedpyright = basedpyright,
         clangd = clangd,
         neocmake = cmake,
       },
