@@ -1,7 +1,19 @@
 return {
   "hrsh7th/nvim-cmp",
   ---@param opts cmp.ConfigSchema
+  optional = true,
   opts = function(_, opts)
+    -- clangd:
+    -- table.insert(opts.sorting.comparators, 1, require("clangd_extensions.cmp_scores"))
+
+    -- copilot
+    -- table.insert(opts.sources, 1, {
+    --   name = "copilot",
+    --   group_index = 1,
+    --   priority = 100,
+    -- })
+
+    -- super tab key
     local has_words_before = function()
       unpack = unpack or table.unpack
       local line, col = unpack(vim.api.nvim_win_get_cursor(0))

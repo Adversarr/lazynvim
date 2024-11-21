@@ -43,32 +43,7 @@ local clangd = {
   },
 }
 
--- local clangd = {
---   cmd = {
---     "clangd",
---     "-j=8",
---     "--header-insertion=never",
---     "--ranking-model=heuristics",
---     "--enable-config",
---     "--background-index",
---     "--clang-tidy",
---   },
---   capabilities = default_capabilities,
---   init_options = {
---     clangdFileStatus = true,
---     clangdSemanticHighlighting = true,
---   },
---   filetypes = { "c", "cpp", "cxx", "cc", "cuda" },
---   root_dir = function()
---     vim.fn.getcwd()
---   end,
---   settings = {
---     ["clangd"] = {
---       ["compilationDatabasePath"] = "build",
---       ["fallbackFlags"] = { "-std=c++17" },
---     },
---   },
--- }
+local cmake = {}
 
 local pyright = {}
 
@@ -81,6 +56,7 @@ return {
       servers = {
         basedpyright = pyright,
         clangd = clangd,
+        neocmake = cmake,
       },
     },
     setup = {
