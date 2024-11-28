@@ -11,6 +11,16 @@ local anaconda_base_path = {
       type = "anaconda",
     },
   },
+  Darwin = {
+    anaconda_base = {
+      command = "$FD '/python$' /opt/homebrew/Caskroom/miniconda/base/bin/ --full-path --color never",
+      type = "anaconda",
+    },
+    anaconda_envs = {
+      command = "$FD 'bin/python$' /opt/homebrew/Caskroom/miniconda/base/envs/ --full-path --color never",
+      type = "anaconda",
+    },
+  },
 }
 
 return {
