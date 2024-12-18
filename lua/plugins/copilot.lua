@@ -1,3 +1,7 @@
+-- if true then
+--   return {}
+-- end
+
 return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
@@ -6,7 +10,7 @@ return {
   opts = {
     suggestion = {
       enabled = not vim.g.ai_cmp,
-      auto_trigger = true,
+      auto_trigger = false,
       keymap = {
         accept = false, -- handled by nvim-cmp / blink.cmp
         next = "<M-]>",

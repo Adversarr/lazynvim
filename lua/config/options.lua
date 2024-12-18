@@ -9,13 +9,15 @@ vim.g.autoformat = true
 -- if the completion engine supports the AI source,
 -- use that instead of inline suggestions
 vim.g.ai_cmp = true
+vim.g.copilot_proxy = "https://localhost:7890"
 
 -- Set to "basedpyright" to use basedpyright instead of pyright.
 vim.g.lazyvim_python_lsp = "basedpyright"
 -- Set to "ruff_lsp" to use the old LSP implementation version.
 vim.g.lazyvim_python_ruff = "ruff"
-local opt = vim.opt
+vim.g.snacks_animate = false
 
-if vim.fn.has("nvim-0.10") == 1 then
-  opt.smoothscroll = false
-end
+-- local opt = vim.opt
+-- if vim.fn.has("nvim-0.10") == 1 then
+--  opt.smoothscroll = false
+-- end
