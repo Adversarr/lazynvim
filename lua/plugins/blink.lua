@@ -1,7 +1,13 @@
+if true then
+  -- currently, blink.cmp is not stable enough.
+  return {}
+end
+
 return {
   "saghen/blink.cmp",
-  version = not vim.g.lazyvim_blink_main and "*",
-  build = vim.g.lazyvim_blink_main and "cargo build --release",
+  -- version = not vim.g.lazyvim_blink_main and "*",
+  -- build = vim.g.lazyvim_blink_main and "cargo build --release",
+  version = "v0.*",
   opts_extend = {
     "sources.completion.enabled_providers",
     "sources.compat",
@@ -38,11 +44,11 @@ return {
     },
     completion = {
       trigger = {
-        prefetch_on_insert = true,
+        prefetch_on_insert = false,
       },
 
       list = {
-        selection = "auto_insert",
+        selection = "preselect",
       },
       accept = {
         -- experimental auto-brackets support
@@ -117,7 +123,9 @@ return {
           module = "blink-cmp-copilot",
           kind = "Copilot",
           score_offset = 100,
-          async = false,
+          async = true,
+          timeout_ms = 20,
+          -- enabled = vim.g.ai_cmp,
           enabled = false,
         },
       },
@@ -167,22 +175,6 @@ return {
         table.insert(enabled, source)
       end
     end
-
-    -- add ai_accept to <Tab> key
-    -- if not opts.keymap["<Tab>"] then
-    --   if opts.keymap.preset == "super-tab" then -- super-tab
-    --     opts.keymap["<Tab>"] = {
-    --       require("blink.cmp.keymap.presets")["super-tab"]["<Tab>"][1],
-    --       LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
-    --       "fallback",
-    --     }
-    --   else -- other presets
-    --     opts.keymap["<Tab>"] = {
-    --       LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
-    --       "fallback",
-    --     }
-    --   end
-    -- end
 
     ---  NOTE: compat with latest version. Currenlty 0.7.6
     if not vim.g.lazyvim_blink_main then

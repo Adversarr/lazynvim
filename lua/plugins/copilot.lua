@@ -1,7 +1,3 @@
--- if true then
---   return {}
--- end
-
 return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
@@ -9,7 +5,7 @@ return {
   event = "InsertEnter",
   opts = {
     suggestion = {
-      enabled = not vim.g.ai_cmp,
+      enabled = false,
       auto_trigger = false,
       keymap = {
         accept = false, -- handled by nvim-cmp / blink.cmp

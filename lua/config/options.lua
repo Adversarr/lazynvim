@@ -16,6 +16,7 @@ vim.g.lazyvim_python_lsp = "basedpyright"
 -- Set to "ruff_lsp" to use the old LSP implementation version.
 vim.g.lazyvim_python_ruff = "ruff"
 vim.g.snacks_animate = false
+vim.g.lazyvim_cmp = "nvim-cmp"
 
 -- local opt = vim.opt
 -- if vim.fn.has("nvim-0.10") == 1 then
