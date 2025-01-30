@@ -4,7 +4,7 @@ return {
   config = function() end,
   opts = {
     inlay_hints = {
-      inline = false,
+      inline = true,
     },
     ast = {
       --These require codicons (https://github.com/microsoft/vscode-codicons)
