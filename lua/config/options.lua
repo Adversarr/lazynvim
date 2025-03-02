@@ -4,7 +4,7 @@
 -- LSP Server to use for Python.
 
 -- LazyVim auto format
-vim.g.autoformat = true
+vim.g.autoformat = false
 
 -- if the completion engine supports the AI source,
 -- use that instead of inline suggestions
@@ -22,3 +22,5 @@ vim.g.snacks_animate = false
 -- if vim.fn.has("nvim-0.10") == 1 then
 --  opt.smoothscroll = false
 -- end
+
+vim.g.lazyvim_picker = "telescope"

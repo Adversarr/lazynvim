@@ -34,7 +34,7 @@ return {
       use_nvim_cmp_as_default = false,
       -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
       -- adjusts spacing to ensure icons are aligned
-      nerd_font_variant = "mono",
+      nerd_font_variant = "normal",
     },
     completion = {
       -- 'prefix' will fuzzy match on the text before the cursor
@@ -85,7 +85,10 @@ return {
       -- with blink.compat
       compat = {},
       default = { "lsp", "path", "snippets", "buffer" },
-      cmdline = {},
+    },
+
+    cmdline = {
+      enabled = false,
     },
 
     keymap = {
@@ -96,13 +99,16 @@ return {
 
       -- ["<Tab>"] = { "snippet_forward", "fallback" },
       -- ["<S-Tab>"] = { "snippet_backward", "fallback" },
-      ["<Tab>"] = { "select_next", "fallback" },
-      ["<S-Tab>"] = { "select_prev", "fallback" },
+
+      ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+      ["<S-Tab>"] = { 'select_prev', 'snippet_backward', 'fallback' },
+      -- ["<Tab>"] = { "select_next", "fallback" },
+      -- ["<S-Tab>"] = { "select_prev", "fallback" },
 
       ["<Up>"] = { "select_prev", "fallback" },
       ["<Down>"] = { "select_next", "fallback" },
-      ["<C-p>"] = { "select_prev", "fallback" },
-      ["<C-n>"] = { "select_next", "fallback" },
+      ["<C-p>"] = { "snippet_forward", "fallback" },
+      ["<C-n>"] = { "snippet_backward", "fallback" },
 
       ["<C-b>"] = { "scroll_documentation_up", "fallback" },
       ["<C-f>"] = { "scroll_documentation_down", "fallback" },
