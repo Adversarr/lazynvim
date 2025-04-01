@@ -94,14 +94,16 @@ return {
     keymap = {
       preset = "none",
       ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-      ["<C-e>"] = { "hide", "fallback" },
+      ["<M-e>"] = { "show", "fallback" },
       ["<CR>"] = { "accept", "fallback" },
 
       -- ["<Tab>"] = { "snippet_forward", "fallback" },
       -- ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
-      ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
-      ["<S-Tab>"] = { 'select_prev', 'snippet_backward', 'fallback' },
+      ['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
+      ["<S-Tab>"] = { 'snippet_backward', 'select_prev', 'fallback' },
+      -- ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+      -- ["<S-Tab>"] = { 'select_prev', 'snippet_backward', 'fallback' },
       -- ["<Tab>"] = { "select_next", "fallback" },
       -- ["<S-Tab>"] = { "select_prev", "fallback" },
 
@@ -138,10 +140,10 @@ return {
           "fallback",
         }
       else -- other presets
-        opts.keymap["<Tab>"] = {
-          LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
-          "fallback",
-        }
+        -- opts.keymap["<Tab>"] = {
+        --   LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
+        --   "fallback",
+        -- }
       end
     end
 

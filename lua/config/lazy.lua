@@ -16,8 +16,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
+    { "ellisonleao/gruvbox.nvim" },
     -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins", opts = { colorscheme = "catppuccin" } },
+    { "LazyVim/LazyVim",
+      import = "lazyvim.plugins",
+      opts = { colorscheme = "gruvbox" }
+    },
     -- import/override with your plugins
     { import = "lazyvim.plugins.extras.ai.copilot" },
     { import = "lazyvim.plugins.extras.lang.python" },
@@ -26,6 +30,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.coding.neogen" },
     -- { import = "lazyvim.plugins.extras.coding.nvim-cmp" },
     { import = "lazyvim.plugins.extras.editor.telescope" },
+    { import = "lazyvim.plugins.extras.coding.mini-snippets" },
     { import = "plugins" },
   },
   defaults = {
