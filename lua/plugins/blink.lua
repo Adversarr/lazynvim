@@ -9,6 +9,7 @@ return {
   },
   dependencies = {
     "rafamadriz/friendly-snippets",
+    "giuxtaposition/blink-cmp-copilot",
     -- add blink.compat to dependencies
     {
       "saghen/blink.compat",
@@ -34,7 +35,7 @@ return {
       use_nvim_cmp_as_default = false,
       -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
       -- adjusts spacing to ensure icons are aligned
-      nerd_font_variant = "normal",
+      nerd_font_variant = "mono",
     },
     completion = {
       -- 'prefix' will fuzzy match on the text before the cursor
@@ -84,7 +85,15 @@ return {
       -- adding any nvim-cmp sources here will enable them
       -- with blink.compat
       compat = {},
-      default = { "lsp", "path", "snippets", "buffer" },
+      default = { "lsp", "path", "snippets", "buffer", "copilot" },
+      providers = {
+        copilot = {
+          name = "copilot",
+          module = "blink-cmp-copilot",
+          score_offset = 100,
+          async = true,
+        },
+      },
     },
 
     cmdline = {
@@ -92,28 +101,20 @@ return {
     },
 
     keymap = {
-      preset = "none",
-      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-      ["<M-e>"] = { "show", "fallback" },
-      ["<CR>"] = { "accept", "fallback" },
-
-      -- ["<Tab>"] = { "snippet_forward", "fallback" },
-      -- ["<S-Tab>"] = { "snippet_backward", "fallback" },
-
-      ['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
-      ["<S-Tab>"] = { 'snippet_backward', 'select_prev', 'fallback' },
-      -- ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
-      -- ["<S-Tab>"] = { 'select_prev', 'snippet_backward', 'fallback' },
+      preset = "super-tab",
+      -- ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+      -- ["<M-e>"] = { "show", "fallback" },
+      -- ["<CR>"] = { "accept", "fallback" },
       -- ["<Tab>"] = { "select_next", "fallback" },
       -- ["<S-Tab>"] = { "select_prev", "fallback" },
-
-      ["<Up>"] = { "select_prev", "fallback" },
-      ["<Down>"] = { "select_next", "fallback" },
-      ["<C-p>"] = { "snippet_forward", "fallback" },
-      ["<C-n>"] = { "snippet_backward", "fallback" },
-
-      ["<C-b>"] = { "scroll_documentation_up", "fallback" },
-      ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+      --
+      -- ["<Up>"] = { "select_prev", "fallback" },
+      -- ["<Down>"] = { "select_next", "fallback" },
+      -- ["<C-p>"] = { "snippet_forward", "fallback" },
+      -- ["<C-n>"] = { "snippet_backward", "fallback" },
+      --
+      -- ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+      -- ["<C-f>"] = { "scroll_documentation_down", "fallback" },
     },
   },
   ---@param opts blink.cmp.Config | { sources: { compat: string[] } }
