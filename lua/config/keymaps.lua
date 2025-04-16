@@ -42,12 +42,12 @@ add({
   { -- cmake
     { "<leader>C", group = "CMake Tools" },
     { "<leader>Cb", "<cmd>CMakeBuild<cr>", desc = "Build Target" },
-    { "<leader>CB", "<cmd>CMakeSelectBuildTarget<cr>", desc="Set Build Target" },
+    { "<leader>CB", "<cmd>CMakeSelectBuildTarget<cr>", desc = "Set Build Target" },
     { "<leader>Cr", "<cmd>CMakeRun<cr>", desc = "Run current Launch Target" },
     { "<leader>CR", "<cmd>CMakeSelectLaunchTarget<cr>", desc = "Set Launch Target" },
     { "<leader>CT", "<cmd>CMakeSelectBuildType<cr>", desc = "Set Build Type" },
     { "<leader>Cq", group = "CMake Quicks" },
     { "<leader>Cqr", "<cmd>CMakeQuickRun<cr>", desc = "Quick Run" },
     { "<leader>Cqb", "<cmd>CMakeQuickBuild<cr>", desc = "Quick Run" },
-  }
+  },
 })

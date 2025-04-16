@@ -47,6 +47,15 @@ local basedpyright = {
   },
 }
 
+local ruff = {
+  init_options = {
+    settings = {
+      lineLength = 120,  -- 注意 Ruff 的 LSP 可能使用驼峰命名
+      args = { "--ignore=E501" },  -- 忽略行长度检查
+    }
+  }
+}
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -57,6 +66,7 @@ return {
         basedpyright = basedpyright,
         clangd = clangd,
         neocmake = cmake,
+        ruff = ruff,
       },
     },
     setup = {

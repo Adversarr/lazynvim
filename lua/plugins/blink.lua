@@ -57,7 +57,9 @@ return {
           -- preselect = function(ctx)
           --   return ctx.mode ~= "cmdline"
           -- end,
-          preselect = true,
+          preselect = function(ctx)
+            return not require("blink.cmp").snippet_active({ direction = 1 })
+          end,
           auto_insert = true,
         },
       },
@@ -75,6 +77,10 @@ return {
       },
       ghost_text = {
         enabled = vim.g.ai_cmp,
+      },
+
+      trigger = {
+        show_in_snippet = false,
       },
     },
 
@@ -102,19 +108,32 @@ return {
 
     keymap = {
       preset = "super-tab",
-      -- ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-      -- ["<M-e>"] = { "show", "fallback" },
-      -- ["<CR>"] = { "accept", "fallback" },
-      -- ["<Tab>"] = { "select_next", "fallback" },
-      -- ["<S-Tab>"] = { "select_prev", "fallback" },
-      --
-      -- ["<Up>"] = { "select_prev", "fallback" },
-      -- ["<Down>"] = { "select_next", "fallback" },
-      -- ["<C-p>"] = { "snippet_forward", "fallback" },
-      -- ["<C-n>"] = { "snippet_backward", "fallback" },
-      --
-      -- ["<C-b>"] = { "scroll_documentation_up", "fallback" },
-      -- ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+      ["<C-e>"] = { "hide", "fallback" },
+
+      ["<Tab>"] = {
+        function(cmp)
+          if cmp.snippet_active() then
+            return cmp.accept()
+          else
+            return cmp.select_and_accept()
+          end
+        end,
+        "snippet_forward",
+        "fallback",
+      },
+      ["<S-Tab>"] = { "snippet_backward", "fallback" },
+
+      ["<Up>"] = { "select_prev", "fallback" },
+      ["<Down>"] = { "select_next", "fallback" },
+      ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+      ["<C-n>"] = { "select_next", "fallback_to_mappings" },
+
+      ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+      ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+
+      ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+      ["<CR>"] = { "accept", "fallback" },
     },
   },
   ---@param opts blink.cmp.Config | { sources: { compat: string[] } }
