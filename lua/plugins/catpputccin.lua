@@ -44,7 +44,7 @@ return {
         enabled = true,
         transparent = false,
       },
-      nvimtree = true,
+      nvimtree = false,
       treesitter = true,
       notify = false,
       mini = {

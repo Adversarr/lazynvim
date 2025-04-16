@@ -73,10 +73,11 @@ return {
       },
       documentation = {
         auto_show = true,
-        auto_show_delay_ms = 200,
+        auto_show_delay_ms = 100,
       },
       ghost_text = {
-        enabled = vim.g.ai_cmp,
+        enabled = true,
+        show_with_menu = true,
       },
 
       trigger = {
@@ -91,7 +92,12 @@ return {
       -- adding any nvim-cmp sources here will enable them
       -- with blink.compat
       compat = {},
-      default = { "lsp", "path", "snippets", "buffer", "copilot" },
+      default = {
+        "lsp",
+        "buffer",
+        "snippets",
+        "path",
+      },
       providers = {
         copilot = {
           name = "copilot",
