@@ -1,6 +1,6 @@
 return {
   "saghen/blink.cmp",
-  version = not vim.g.lazyvim_blink_main and "*",
+  version = not vim.g.lazyvim_blink_main and "1.*",
   build = vim.g.lazyvim_blink_main and "cargo build --release",
   opts_extend = {
     "sources.completion.enabled_providers",
@@ -92,12 +92,7 @@ return {
       -- adding any nvim-cmp sources here will enable them
       -- with blink.compat
       compat = {},
-      default = {
-        "lsp",
-        "buffer",
-        "snippets",
-        "path",
-      },
+      default = { "copilot", "lsp", "path", "snippets", "buffer" },
       providers = {
         copilot = {
           name = "copilot",
