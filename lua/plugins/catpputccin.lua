@@ -37,6 +37,7 @@ return {
     color_overrides = {},
     custom_highlights = {},
     default_integrations = true,
+    auto_integrations = false,
     integrations = {
       blink_cmp = true,
       cmp = false,

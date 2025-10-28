@@ -18,10 +18,7 @@ require("lazy").setup({
   spec = {
     { "ellisonleao/gruvbox.nvim" },
     -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim",
-      import = "lazyvim.plugins",
-      opts = { colorscheme = "catppuccin" },
-    },
+    { "LazyVim/LazyVim", import = "lazyvim.plugins", opts = { colorscheme = "tokyonight" } },
     -- import/override with your plugins
     { import = "lazyvim.plugins.extras.ai.copilot" },
     { import = "lazyvim.plugins.extras.lang.python" },
@@ -32,6 +29,7 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.coding.nvim-cmp" },
     { import = "lazyvim.plugins.extras.editor.telescope" },
     { import = "lazyvim.plugins.extras.coding.mini-snippets" },
+    { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "plugins" },
   },
   defaults = {
@@ -43,7 +41,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  install = { colorscheme = { "tokyonight" } },
   checker = {
     enabled = true, -- check for plugin updates periodically
     notify = false, -- notify on update
