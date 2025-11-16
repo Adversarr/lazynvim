@@ -18,7 +18,7 @@ return {
       version = not vim.g.lazyvim_blink_main and "*",
     },
   },
-  event = "InsertEnter",
+  event = { "InsertEnter", "CmdlineEnter" },
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -73,10 +73,10 @@ return {
       },
       documentation = {
         auto_show = true,
-        auto_show_delay_ms = 100,
+        auto_show_delay_ms = 200,
       },
       ghost_text = {
-        enabled = true,
+        enabled = vim.g.ai_cmp,
         show_with_menu = true,
       },
 
@@ -108,37 +108,15 @@ return {
     },
 
     keymap = {
-      preset = "super-tab",
-      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-      ["<C-e>"] = { "hide", "fallback" },
-
-      ["<Tab>"] = {
-        function(cmp)
-          if cmp.snippet_active() then
-            return cmp.accept()
-          else
-            return cmp.select_and_accept()
-          end
-        end,
-        "snippet_forward",
-        "fallback",
-      },
-      ["<S-Tab>"] = { "snippet_backward", "fallback" },
-
-      ["<Up>"] = { "select_prev", "fallback" },
-      ["<Down>"] = { "select_next", "fallback" },
-      ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
-      ["<C-n>"] = { "select_next", "fallback_to_mappings" },
-
-      ["<C-b>"] = { "scroll_documentation_up", "fallback" },
-      ["<C-f>"] = { "scroll_documentation_down", "fallback" },
-
-      ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
-      ["<CR>"] = { "accept", "fallback" },
+      preset = "enter",
+      ["<C-y>"] = { "select_and_accept" },
     },
   },
   ---@param opts blink.cmp.Config | { sources: { compat: string[] } }
   config = function(_, opts)
+    if opts.snippets and opts.snippets.preset == "default" then
+      opts.snippets.expand = LazyVim.cmp.expand
+    end
     -- setup compat sources
     local enabled = opts.sources.default
     for _, source in ipairs(opts.sources.compat or {}) do
@@ -156,15 +134,15 @@ return {
     if not opts.keymap["<Tab>"] then
       if opts.keymap.preset == "super-tab" then -- super-tab
         opts.keymap["<Tab>"] = {
-          require("blink.cmp.keymap.presets")["super-tab"]["<Tab>"][1],
-          LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
+          require("blink.cmp.keymap.presets").get("super-tab")["<Tab>"][1],
+          LazyVim.cmp.map({ "snippet_forward", "ai_nes", "ai_accept" }),
           "fallback",
         }
       else -- other presets
-        -- opts.keymap["<Tab>"] = {
-        --   LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
-        --   "fallback",
-        -- }
+        opts.keymap["<Tab>"] = {
+          LazyVim.cmp.map({ "snippet_forward", "ai_nes", "ai_accept" }),
+          "fallback",
+        }
       end
     end
 
@@ -190,6 +168,7 @@ return {
           items = transform_items and transform_items(ctx, items) or items
           for _, item in ipairs(items) do
             item.kind = kind_idx or item.kind
+            item.kind_icon = LazyVim.config.icons.kinds[item.kind_name] or item.kind_icon or nil
           end
           return items
         end
