@@ -23,7 +23,7 @@ vim.g.snacks_animate = false
 --  opt.smoothscroll = false
 -- end
 
-vim.g.lazyvim_picker = "telescope"
+-- vim.g.lazyvim_picker = "telescope"
 
 ---- Set to `false` to prevent "non-lsp snippets"" from appearing inside completion windows
 -- Motivation: Less clutter in completion windows and a more direct usage of snippits

@@ -7,7 +7,6 @@ if not success then
   return
 end
 
-local register = which_key.register
 local add = which_key.add
 
 local function try_close_buffer(kill_command, bufnr, force)
@@ -18,25 +17,25 @@ add({
   -- Buffer & Window
   { "<M-c>", try_close_buffer, desc = "Quit the window" },
   { "<M-q>", "<cmd>q<cr>", desc = "Quit the window" },
-  { -- Telescope
-    { "<leader>t", group = "Telescope" },
-    { "<leader>tr", "<cmd>Telescope resume<cr>", desc = "Resume" },
-    { "<leader>tc", "<cmd>Telescope commands<cr>", desc = "Commands" },
-    { "<leader>tF", "<cmd>Telescope find_files<cr>", desc = "Find files" },
-    { "<leader>tP", "<cmd>Telescope find_files find_command=rg,--hidden,--files<cr>", desc = "Files" },
-    { "<leader>tb", "<cmd>Telescope buffers<cr>", desc = "Switch between buffers" },
-    { "<leader>tp", "<cmd>Telescope git_files show_untracked=true<cr>", desc = "Git Files." },
-    { "<leader>tt", "<cmd>Telescope live_grep use_regex=true<cr>", desc = "Find string in ws" },
-    { "<leader>tw", "<cmd>Telescope grep_string<cr>", desc = "Find string in ws" },
-    { "<leader>ty", "<cmd>Telescope filetypes<cr>", desc = "File types" },
-    -- Telescope->git
-    { "<leader>tg", group = "Telescope git" },
-    { "<leader>tgb", "<cmd>Telescope git_branches<cr>", desc = "Git Branches" },
-    { "<leader>tgc", "<cmd>Telescope git_commits<cr>", desc = "Git Commits" },
-    { "<leader>tgs", "<cmd>Telescope git_status<cr>", desc = "Git Status" },
-    { "<leader>tgf", "<cmd>Telescope git_files<cr>", desc = "Git Files" },
-    { "<leader>tgP", "<cmd>Telescope git_files show_untracked=true<cr>", desc = "Git Files." },
-    { "<leader>to", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document symbols" },
+  { -- FZF
+    { "<leader>t", group = "FZF" },
+    { "<leader>tr", "<cmd>FzfLua resume<cr>", desc = "Resume last search" },
+    { "<leader>tc", "<cmd>FzfLua commands<cr>", desc = "Neovim commands" },
+    { "<leader>tF", "<cmd>FzfLua files<cr>", desc = "Find files" },
+    { "<leader>tP", "<cmd>FzfLua oldfiles<cr>", desc = "Recent files" },
+    { "<leader>tb", "<cmd>FzfLua buffers<cr>", desc = "Switch between buffers" },
+    { "<leader>tp", "<cmd>FzfLua git_files<cr>", desc = "Git files" },
+    { "<leader>tt", "<cmd>FzfLua live_grep<cr>", desc = "Live grep in workspace" },
+    { "<leader>tw", "<cmd>FzfLua grep_cword<cr>", desc = "Grep word under cursor" },
+    { "<leader>ty", "<cmd>FzfLua filetypes<cr>", desc = "File types" },
+    -- FZF->git
+    { "<leader>tg", group = "FZF git" },
+    { "<leader>tgb", "<cmd>FzfLua git_branches<cr>", desc = "Git branches" },
+    { "<leader>tgc", "<cmd>FzfLua git_commits<cr>", desc = "Git commits" },
+    { "<leader>tgs", "<cmd>FzfLua git_status<cr>", desc = "Git status" },
+    { "<leader>tgf", "<cmd>FzfLua git_diff<cr>", desc = "Git diff" },
+    { "<leader>tgP", "<cmd>lua require('fzf-lua').git_files({cmd = 'git ls-files --exclude-standard --others'})<cr>", desc = "Git files (untracked)" },
+    { "<leader>to", "<cmd>FzfLua lsp_document_symbols<cr>", desc = "Document symbols" },
     mode = { "n" },
   },
   { -- cmake
