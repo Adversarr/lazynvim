@@ -37,16 +37,5 @@ add({
     { "<leader>tgP", "<cmd>lua require('fzf-lua').git_files({cmd = 'git ls-files --exclude-standard --others'})<cr>", desc = "Git files (untracked)" },
     { "<leader>to", "<cmd>FzfLua lsp_document_symbols<cr>", desc = "Document symbols" },
     mode = { "n" },
-  },
-  { -- cmake
-    { "<leader>C", group = "CMake Tools" },
-    { "<leader>Cb", "<cmd>CMakeBuild<cr>", desc = "Build Target" },
-    { "<leader>CB", "<cmd>CMakeSelectBuildTarget<cr>", desc = "Set Build Target" },
-    { "<leader>Cr", "<cmd>CMakeRun<cr>", desc = "Run current Launch Target" },
-    { "<leader>CR", "<cmd>CMakeSelectLaunchTarget<cr>", desc = "Set Launch Target" },
-    { "<leader>CT", "<cmd>CMakeSelectBuildType<cr>", desc = "Set Build Type" },
-    { "<leader>Cq", group = "CMake Quicks" },
-    { "<leader>Cqr", "<cmd>CMakeQuickRun<cr>", desc = "Quick Run" },
-    { "<leader>Cqb", "<cmd>CMakeQuickBuild<cr>", desc = "Quick Run" },
-  },
+  }
 })

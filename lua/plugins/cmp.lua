@@ -11,9 +11,6 @@ return {
   ---@param opts cmp.ConfigSchema
   optional = true,
   opts = function(_, opts)
-    -- clangd:
-    -- table.insert(opts.sorting.comparators, 1, require("clangd_extensions.cmp_scores"))
-
     -- copilot
     -- table.insert(opts.sources, 1, {
     --   name = "copilot",

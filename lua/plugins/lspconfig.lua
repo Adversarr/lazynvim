@@ -1,41 +1,3 @@
-local clangd = {
-  keys = {
-    { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
-  },
-  root_dir = function(fname)
-    return require("lspconfig.util").root_pattern(
-      "Makefile",
-      "configure.ac",
-      "configure.in",
-      "config.h.in",
-      "meson.build",
-      "meson_options.txt",
-      "build.ninja"
-    )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(fname) or require(
-      "lspconfig.util"
-    ).find_git_ancestor(fname)
-  end,
-  capabilities = {
-    offsetEncoding = { "utf-16" },
-  },
-  cmd = {
-    "clangd",
-    "--background-index",
-    "--clang-tidy",
-    "--header-insertion=iwyu",
-    "--completion-style=detailed",
-    "--function-arg-placeholders",
-    "--fallback-style=llvm",
-  },
-  init_options = {
-    usePlaceholders = true,
-    completeUnimported = true,
-    clangdFileStatus = true,
-  },
-}
-
-local cmake = {}
-
 local basedpyright = {
   settings = {
     basedpyright = {
@@ -57,24 +19,20 @@ local ruff = {
 }
 
 return {
-  {
-    "neovim/nvim-lspconfig",
-    ---@class PluginLspOpts
-    opts = {
-      ---@type lspconfig.options
-      servers = {
-        basedpyright = basedpyright,
-        clangd = clangd,
-        neocmake = cmake,
-        ruff = ruff,
-      },
+  "neovim/nvim-lspconfig",
+  opts = {
+    servers = {
+      -- copilot.lua only works with its own copilot lsp server
+      copilot = { enabled = false },
     },
-    setup = {
-      clangd = function(_, opts)
-        local clangd_ext_opts = LazyVim.opts("clangd_extensions.nvim")
-        require("clangd_extensions").setup(vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts }))
-        return false
-      end,
+    ["*"] = {
+      keys = {
+        { "gd", "<cmd>FzfLua lsp_definitions     jump1=true ignore_current_line=true<cr>", desc = "Goto Definition", has = "definition" },
+        { "gr", "<cmd>FzfLua lsp_references      jump1=true ignore_current_line=true<cr>", desc = "References", nowait = true },
+        { "gI", "<cmd>FzfLua lsp_implementations jump1=true ignore_current_line=true<cr>", desc = "Goto Implementation" },
+        { "gy", "<cmd>FzfLua lsp_typedefs        jump1=true ignore_current_line=true<cr>", desc = "Goto T[y]pe Definition" },
+      }
     },
   },
 }
+

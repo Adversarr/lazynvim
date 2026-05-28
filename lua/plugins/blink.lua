@@ -23,11 +23,7 @@ return {
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
-    snippets = {
-      expand = function(snippet, _)
-        return LazyVim.cmp.expand(snippet)
-      end,
-    },
+    snippets = { preset = 'default' },
     appearance = {
       -- sets the fallback highlight groups to nvim-cmp's highlight groups
       -- useful for when your theme doesn't support blink.cmp
@@ -44,19 +40,11 @@ return {
       keyword = { range = "full" },
       -- Disable auto brackets
       -- NOTE: some LSPs may add auto brackets themselves anyway
-      accept = {
-        -- experimental auto-brackets support
-        auto_brackets = {
-          enabled = true,
-        },
-      },
+      accept = { auto_brackets = { enabled = false }, },
 
       -- or set either per mode via a function
       list = {
         selection = {
-          -- preselect = function(ctx)
-          --   return ctx.mode ~= "cmdline"
-          -- end,
           preselect = function(ctx)
             return not require("blink.cmp").snippet_active({ direction = 1 })
           end,
@@ -65,20 +53,20 @@ return {
       },
 
       menu = {
-        -- Don't automatically show the completion menu
-        auto_show = true,
+        auto_show = false,
+        columns = {
+          { "label", "label_description", gap = 1 },
+          { "kind_icon", "kind" }
+        },
         draw = {
           treesitter = { "lsp" },
         },
       },
-      documentation = {
-        auto_show = true,
-        auto_show_delay_ms = 200,
-      },
-      ghost_text = {
-        enabled = vim.g.ai_cmp,
-        show_with_menu = true,
-      },
+      -- Show documentation when selecting a completion item
+      documentation = { auto_show = true, auto_show_delay_ms = 500 },
+
+      -- Display a preview of the selected item on the current line
+      ghost_text = { enabled = vim.g.ai_cmp, },
 
       trigger = {
         show_in_snippet = false,

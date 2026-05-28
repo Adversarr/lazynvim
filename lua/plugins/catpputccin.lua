@@ -1,5 +1,6 @@
 return {
-  "catppuccin",
+  "catppuccin/nvim",
+  name="catppuccin",
   optional = true,
   opts = {
     flavour = "auto", -- latte, frappe, macchiato, mocha

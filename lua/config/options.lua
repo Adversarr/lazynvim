@@ -11,6 +11,10 @@ vim.g.autoformat = false
 vim.g.ai_cmp = true
 vim.g.copilot_proxy = "https://localhost:7890"
 
+-- In case you don't want to use `:LazyExtras`,
+-- then you need to set the option below.
+vim.g.lazyvim_picker = "fzf"
+
 -- Set to "basedpyright" to use basedpyright instead of pyright.
 vim.g.lazyvim_python_lsp = "basedpyright"
 -- Set to "ruff_lsp" to use the old LSP implementation version.
