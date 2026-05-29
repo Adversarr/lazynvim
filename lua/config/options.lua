@@ -9,7 +9,7 @@ vim.g.autoformat = false
 -- if the completion engine supports the AI source,
 -- use that instead of inline suggestions
 vim.g.ai_cmp = true
-vim.g.copilot_proxy = "https://localhost:7890"
+vim.g.copilot_proxy = "https://localhost:43924"
 
 -- In case you don't want to use `:LazyExtras`,
 -- then you need to set the option below.
