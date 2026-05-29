@@ -54,7 +54,7 @@ return {
       },
 
       menu = {
-        auto_show = false,
+        auto_show = true,
         draw = {
           columns = {
             { "label", "label_description", gap = 1 },
