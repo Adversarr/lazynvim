@@ -10,6 +10,7 @@ return {
   dependencies = {
     "rafamadriz/friendly-snippets",
     "giuxtaposition/blink-cmp-copilot",
+    "saghen/blink.lib",
     -- add blink.compat to dependencies
     {
       "saghen/blink.compat",
@@ -54,11 +55,11 @@ return {
 
       menu = {
         auto_show = false,
-        columns = {
-          { "label", "label_description", gap = 1 },
-          { "kind_icon", "kind" }
-        },
         draw = {
+          columns = {
+            { "label", "label_description", gap = 1 },
+            { "kind_icon", "kind" }
+          },
           treesitter = { "lsp" },
         },
       },

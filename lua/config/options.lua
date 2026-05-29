@@ -34,4 +34,5 @@ vim.g.snacks_animate = false
 vim.g.lazyvim_mini_snippets_in_completion = true
 
 -- The prebuilt version crashes.
-vim.g.lazyvim_blink_main = true
+-- vim.g.lazyvim_blink_main = true
+vim.g.lazyvim_blink_main = false
